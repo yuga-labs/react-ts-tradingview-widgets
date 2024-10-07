@@ -76,7 +76,11 @@ const Widget: React.FC<WidgetProps> = ({
   return (
     <div style={{ display: "contents" }}>
       {type === "Widget" || type === "MediumWidget" ? (
-        <div id={containerId} key={containerKey}>
+        <div
+          id={containerId}
+          key={containerKey}
+          style={{ display: "contents" }}
+        >
           <div ref={ref} style={{ display: "contents" }} />
         </div>
       ) : (

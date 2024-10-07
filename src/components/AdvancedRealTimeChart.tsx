@@ -52,6 +52,7 @@ export type AdvancedRealTimeChartProps = {
   studies?: Studies[];
   disabled_features?: WidgetFeatures[];
   enabled_features?: WidgetFeatures[];
+  overrides?: object;
 
   library_path?: string;
   datafeed?: unknown;
@@ -94,6 +95,7 @@ const AdvancedRealTimeChart: React.FC<AdvancedRealTimeChartProps> = ({
   studies = undefined,
   disabled_features = undefined,
   enabled_features = undefined,
+  overrides = undefined,
   container_id = `tradingview_${createId(5)}`,
   library_path,
   datafeed,
@@ -137,6 +139,7 @@ const AdvancedRealTimeChart: React.FC<AdvancedRealTimeChartProps> = ({
         studies,
         disabled_features,
         enabled_features,
+        overrides,
         container_id,
         library_path,
         datafeed,

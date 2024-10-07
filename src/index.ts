@@ -379,7 +379,8 @@ export type WidgetFeatures =
   | "lock_visible_time_range_on_resize"
   | "study_templates"
   | "datasource_copypaste"
-  | "seconds_resolution";
+  | "seconds_resolution"
+  | "legend_widget";
 
 export type Exchanges =
   | "ADX"
