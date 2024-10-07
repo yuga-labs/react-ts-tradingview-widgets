@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import Copyright, { CopyrightProps } from "./Copyright";
 
 interface WidgetProps {
-  scriptHTML: unknown;
+  scriptHTML: object;
   scriptSRC: string;
   containerId?: string;
   type?: "Widget" | "MediumWidget";
@@ -34,13 +34,21 @@ const Widget: React.FC<WidgetProps> = ({
         if (type === "Widget" || type === "MediumWidget") {
           script.onload = () => {
             if (typeof TradingView !== undefined) {
-              script.innerHTML = JSON.stringify(
-                type === "Widget"
-                  ? new TradingView.widget(scriptHTML)
-                  : type === "MediumWidget"
-                  ? new TradingView.MediumWidget(scriptHTML)
-                  : undefined
-              );
+              console.log(scriptHTML);
+              new TradingView.widget({
+                container: containerId,
+                ...scriptHTML,
+              });
+              // script.innerHTML = JSON.stringify(
+              //   type === "Widget"
+              //     ? new TradingView.widget({
+              //         container: containerId,
+              //         ...scriptHTML,
+              //       })
+              //     : type === "MediumWidget"
+              //     ? new TradingView.MediumWidget(scriptHTML)
+              //     : undefined
+              // );
             }
           };
         } else {

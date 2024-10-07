@@ -31,6 +31,8 @@ export type AdvancedRealTimeChartProps = {
   timezone?: Timezone;
   theme?: ColorTheme;
   style?: "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9";
+  backgroundColor?: string;
+  gridColor?: string;
   locale?: Locales | "hu_HU" | "fa_IR";
   toolbar_bg?: string;
   enable_publishing?: boolean;
@@ -51,6 +53,10 @@ export type AdvancedRealTimeChartProps = {
   disabled_features?: WidgetFeatures[];
   enabled_features?: WidgetFeatures[];
 
+  library_path?: string;
+  datafeed?: unknown;
+  scriptSRC?: string;
+
   container_id?: string;
   children?: never;
 
@@ -69,6 +75,8 @@ const AdvancedRealTimeChart: React.FC<AdvancedRealTimeChartProps> = ({
   style = "1",
   locale = "en",
   toolbar_bg = "#f1f3f6",
+  backgroundColor,
+  gridColor,
   enable_publishing = false,
   hide_top_toolbar = false,
   hide_legend = false,
@@ -87,8 +95,11 @@ const AdvancedRealTimeChart: React.FC<AdvancedRealTimeChartProps> = ({
   disabled_features = undefined,
   enabled_features = undefined,
   container_id = `tradingview_${createId(5)}`,
+  library_path,
+  datafeed,
 
   copyrightStyles,
+  scriptSRC,
 
   ...props
 }) => {
@@ -105,6 +116,8 @@ const AdvancedRealTimeChart: React.FC<AdvancedRealTimeChartProps> = ({
         style,
         locale,
         toolbar_bg,
+        backgroundColor,
+        gridColor,
         enable_publishing,
         hide_top_toolbar,
         hide_legend,
@@ -125,9 +138,11 @@ const AdvancedRealTimeChart: React.FC<AdvancedRealTimeChartProps> = ({
         disabled_features,
         enabled_features,
         container_id,
+        library_path,
+        datafeed,
         ...props,
       }}
-      scriptSRC="https://s3.tradingview.com/tv.js"
+      scriptSRC={scriptSRC ?? "https://s3.tradingview.com/tv.js"}
       containerId={container_id}
       type="Widget"
       copyrightProps={{
